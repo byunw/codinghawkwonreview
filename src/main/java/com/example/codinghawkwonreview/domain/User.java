@@ -1,5 +1,7 @@
 package com.example.codinghawkwonreview.domain;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Entity;
 
@@ -7,17 +9,19 @@ import jakarta.persistence.Entity;
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String userId;
     private String email;
     private String password;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setUserId(String userId){
+        this.userId = userId;
     }
 
     public void setEmail(String email) {
