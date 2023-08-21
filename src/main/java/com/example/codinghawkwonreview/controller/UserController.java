@@ -19,13 +19,14 @@ public class UserController {
     }
 
     @RequestMapping(value="/userRegister/",method = RequestMethod.POST)
-    public void register(@RequestParam String userName,@RequestParam String userId,@RequestParam String userEmail,@RequestParam String userPassword){
+    public String register(@RequestParam String userName,@RequestParam String userId,@RequestParam String userEmail,@RequestParam String userPassword){
         User user = new User();
         user.setName(userName);
         user.setUserId(userId);
         user.setEmail(userEmail);
         user.setPassword(userPassword);
         userService.register(user);
+        return "userRegisterSuccess";
     }
 
 }
