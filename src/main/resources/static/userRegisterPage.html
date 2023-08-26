@@ -51,7 +51,7 @@
 <body>
 <div class="container">
     <h2>회원 가입</h2>
-    <form action="/userRegister/" method="post">
+    <form id="myform" action="/userRegister/" method="post" onsubmit="return validateForm();">
         <div class="form-group">
             <label for="username">이름</label>
             <input type="text" id="username" name="userName" required>
@@ -72,7 +72,50 @@
             <label for="confirm_password">패스워드 확인</label>
             <input type="password" id="confirm_password" name="confirm_password" required>
         </div>
-        <button type="submit">가입</button>
+        <input type="submit" value="가입">
     </form>
 </div>
 </body>
+
+<script>
+    function validateForm() {
+
+        //유저이름
+        var nameExceed = false;
+        var textval = document.getElementById("username");
+        if (textval.value.length > 50) {
+            nameExceed = true;
+        }
+
+        //유저아이디
+        var userIdExceed = false;
+        var textval2 = document.getElementById("userid");
+        if(textval2.value.length>100){
+            userIdExceed = true;
+        }
+
+        //유저이메일
+        var userEmailExceed = false;
+        var textval3 = document.getElementById("email");
+        if(textval3.value.length>200){
+            userEmailExceed = true;
+        }
+
+        //유저패스워드
+        var userPasswordExceed = false;
+        var textval4 = document.getElementById("password");
+        if(textval4.value.length>100){
+            userPasswordExceed = true;
+        }
+
+        if((!nameExceed) && (!userIdExceed) && (!userEmailExceed) && (!userPasswordExceed)){
+            return true;
+        }
+
+        else{
+            alert("기입한 정보가 너무 길어요!. 기입한 정보를 다시 한번 체크해주세요!")
+            return false;
+        }
+
+    }
+</script>
