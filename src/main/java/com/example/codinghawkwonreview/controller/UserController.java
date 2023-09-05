@@ -18,7 +18,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping(value="/userRegister/",method = RequestMethod.POST)
+    @RequestMapping(value="/userRegister",method = RequestMethod.POST)
     public String register(@RequestParam String userName,@RequestParam String userId,@RequestParam String userEmail,@RequestParam String userPassword){
         User user = new User();
         user.setName(userName);
