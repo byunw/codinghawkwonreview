@@ -31,3 +31,8 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+//테스트 반영하는 빌드
+tasks.named('bootJar') {
+	dependsOn 'test'
+}
