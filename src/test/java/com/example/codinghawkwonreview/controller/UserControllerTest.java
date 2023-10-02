@@ -26,6 +26,7 @@ public class UserControllerTest {
     @Test
     public void 회원가입_컨트롤러_테스트() throws Exception{
         mvc.perform(post("/userRegister")
+                .param("userId","dan24")
                 .param("userEmail","wbyun1461@gmail.com")
                 .param("userPassword","1")
                 .param("userName","변우석"))
