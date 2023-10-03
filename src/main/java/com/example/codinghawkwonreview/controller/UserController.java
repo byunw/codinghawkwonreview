@@ -1,5 +1,6 @@
 package com.example.codinghawkwonreview.controller;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,13 +19,17 @@ public class UserController {
         this.userService = userService;
     }
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @RequestMapping(value="/userRegister",method = RequestMethod.POST)
     public String register(@RequestParam String userName,@RequestParam String userId,@RequestParam String userEmail,@RequestParam String userPassword){
         User user = new User();
+        String encodedUserPassword = passwordEncoder.encode(userPassword);
         user.setName(userName);
         user.setUserId(userId);
         user.setEmail(userEmail);
-        user.setPassword(userPassword);
+        user.setPassword(encodedUserPassword);
         userService.register(user);
         return "userRegisterSuccess";
     }
