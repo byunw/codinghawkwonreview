@@ -48,4 +48,6 @@ public class User {
         return password;
     }
 
+    public String userId() {return userId; }
+
 }

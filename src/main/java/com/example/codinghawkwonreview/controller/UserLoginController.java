@@ -23,9 +23,18 @@ public class UserLoginController {
     }
 
     @RequestMapping(value = "/userLogin", method = RequestMethod.POST)
-    public void login(@RequestParam String userId, @RequestParam String userPassword){
-        String encodedUserPassword = passwordEncoder.encode(userPassword);
-        User user = userService.findByUserIdAndPassword(userId,encodedUserPassword);
+    public String login(@RequestParam String userId, @RequestParam String userPassword){
+        User user = userService.findByUserId(userId);
+
+        boolean loginSuccess = false;
+        if(passwordEncoder.matches(userPassword,user.getPassword())){
+            return "userLoginSuccess";
+        }
+
+        else{
+            return "userLoginFail";
+        }
+
     }
     
 }
